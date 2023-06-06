@@ -97,7 +97,7 @@ public class ListaConceptos extends javax.swing.JInternalFrame {
     }
 
     public void llenarTabla() {
-        String titulos[] = {"Sel", "Nombres", "Apellidos", "Usuario", "Rol", "foto", "Creado", "Ultima actualización"};
+        String titulos[] = {"Sel", "Nombres", "Tipo", "Precio", "Estado", "Descripción", "Foto","Creado", "Ultima actualización"};
 
         String registro[] = new String[5];
         tblModel = new DefaultTableModel(null, titulos);
@@ -131,7 +131,7 @@ public class ListaConceptos extends javax.swing.JInternalFrame {
             tblConceptos.setModel(tblModel);
             tblConceptos.getColumn("Sel").setCellRenderer(new RadioButtonRenderer());
             tblConceptos.getColumn("Sel").setCellEditor(new RadioButtonEditor(new JCheckBox()));
-
+            lbRegistros.setText("Número de registros: " + conceptList.size());
         } catch (SQLException ex) {
             Logger.getLogger(ListaConceptos.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -158,6 +158,7 @@ public class ListaConceptos extends javax.swing.JInternalFrame {
         btnCrear = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
+        lbRegistros = new javax.swing.JLabel();
 
         setResizable(true);
         setTitle("Lista conceptos de facturación");
@@ -223,22 +224,30 @@ public class ListaConceptos extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        lbRegistros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(lbRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbRegistros, javax.swing.GroupLayout.DEFAULT_SIZE, 16, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -294,6 +303,7 @@ public class ListaConceptos extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbRegistros;
     private javax.swing.JTable tblConceptos;
     // End of variables declaration//GEN-END:variables
 }
